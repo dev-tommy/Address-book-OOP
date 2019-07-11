@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Uzytkownik.h"
+#include <windows.h>
 
 using namespace std;
 
@@ -13,5 +14,10 @@ class KsiazkaAdresowa
     vector <Uzytkownik> uzytkownicy;
 public:
     void rejestracjaUzytkownika();
+    void wypiszWszystkichUzytkownikow();
+private:
+    Uzytkownik podajDaneNowegoUzytkownika();
+    int pobierzIdNowegoUzytkownika();
+    bool czyIstniejeLogin(string login);
 
 };
