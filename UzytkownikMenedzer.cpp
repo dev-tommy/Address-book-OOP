@@ -111,3 +111,13 @@ void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
     }
 }
 
+void UzytkownikMenedzer::wylogowanieUzytkownika() {
+    if (idZalogowanegoUzytkownika > 0) {
+        idZalogowanegoUzytkownika = 0;
+        cout << "Uzytkownik wylogowany!" << endl;
+        system("pause");
+    } else {
+        cout << "Uzytkownik nie był zalogowany!" << endl;
+    }
+}
+
