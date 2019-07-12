@@ -1,5 +1,9 @@
 #include "UzytkownikMenedzer.h"
 
+UzytkownikMenedzer::UzytkownikMenedzer(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
+    idZalogowanegoUzytkownika = 0;
+};
+
 void UzytkownikMenedzer::wczytajUzutkownikowZPliku() {
     uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
 
@@ -59,8 +63,9 @@ int UzytkownikMenedzer::pobierzIdNowegoUzytkownika() {
         return uzytkownicy.back().pobierzId() + 1;
 }
 
-int UzytkownikMenedzer::logowanieUzytkownika() {
+void UzytkownikMenedzer::logowanieUzytkownika() {
     string login, haslo;
+    idZalogowanegoUzytkownika = 0;
     cout << "Podaj login: ";
     cin >> login;
 
@@ -73,16 +78,36 @@ int UzytkownikMenedzer::logowanieUzytkownika() {
                 if (uzytkownicy[i].pobierzHaslo() == haslo) {
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
-                    return uzytkownicy[i].pobierzId();
+                    idZalogowanegoUzytkownika = uzytkownicy[i].pobierzId();
+                    return;
                 }
             }
             cout << "Wprowadzono 3 razy bledne haslo." << endl;
             system("pause");
-            return 0;
+            return;
         }
     }
-        cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    system("pause");
+}
+
+void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
+    string noweHaslo = "";
+    if (idZalogowanegoUzytkownika > 0) {
+        cout << "Podaj nowe haslo: ";
+        cin >> noweHaslo;
+
+        for (int i = 0; i < uzytkownicy.size(); i++) {
+            if (uzytkownicy[i].pobierzId() == idZalogowanegoUzytkownika) {
+                uzytkownicy[i].ustawHaslo(noweHaslo);
+                cout << "Haslo zostalo zmienione." << endl << endl;
+                system("pause");
+            }
+        }
+        plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+    } else {
+        cout << "Uzytkownik nie zalogowany!" << endl;
         system("pause");
-        return 0;
+    }
 }
 

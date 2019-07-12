@@ -7,7 +7,7 @@
       <x>14</x>
       <y>7</y>
       <w>231</w>
-      <h>84</h>
+      <h>119</h>
     </coordinates>
     <panel_attributes>KsiazkaAdresowa
 --
@@ -16,6 +16,7 @@
 + KsiazkaAdresowa()
 + rejestracjaUzytkownika() : void
 + logowanieUzytkownika() : void
++ zmianaHaslaZalogowanegoUzytkownika() : void
 + wypiszWszystkichUzytkownikow() : void
 </panel_attributes>
     <additional_attributes/>
@@ -24,7 +25,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>14</x>
-      <y>98</y>
+      <y>147</y>
       <w>126</w>
       <h>63</h>
     </coordinates>
@@ -39,22 +40,25 @@
     <id>UMLClass</id>
     <coordinates>
       <x>14</x>
-      <y>168</y>
+      <y>224</y>
       <w>280</w>
-      <h>133</h>
+      <h>168</h>
     </coordinates>
     <panel_attributes>UzytkownikMenedzer
 --
 - idZalogowanegoUzytkownika : Integer
 - uzytkownicy : vector &lt;Uzytkownik&gt;
 - PlikZUzytkownikami : plikZUzytkownikami
---
-+ rejestracjaUzytkownika() : void
-+ wypiszWszystkichUzytkownikow() : void
-+ wczytajUzutkownikowZPliku() : void
 - podajDaneNowegoUzytkownika() : Uzytkownik
 - pobierzIdNowegoUzytkownika() : Integer
 - czyIstniejeLogin() : Bool
+--
++ rejestracjaUzytkownika() : void
++ logowanieUzytkownika() : int
++ zmianaHaslaZalogowanegoUzytkownika() : void
++ wypiszWszystkichUzytkownikow() : void
++ wczytajUzutkownikowZPliku() : void
+
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -68,14 +72,16 @@
     </coordinates>
     <panel_attributes>PlikZUzytkownikami
 --
+- czyPlikJestPusty() : Bool
 - nazwaPlikuZUzytkownikami : String
-- plikTekstowy : fstream
 - zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami() : String
+- pobierzDaneUzytkownika() Uzytkownik
 --
 PlikZUzytkownikami()
 + dopiszUzytkownikaDoPliku() : void
 + wczytajUzutkownikowZPliku() : vector &lt;Uzytkownik&gt;
-- czyPlikJestPusty() : Bool
++ zapiszWszystkichUzytkownikowDoPliku() : void
+
 </panel_attributes>
     <additional_attributes/>
   </element>
