@@ -12,10 +12,14 @@ int main()
     //ksiazkaAdresowa.rejestracjaUzytkownika();
     cout << "Wypisz wszystkich uzytkownikow:" << endl;
     ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
-    cout << "Zmiana hasla uzytkownika:" << endl;
-    ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
+    //cout << "Zmiana hasla uzytkownika:" << endl;
+    //ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
+    cout << "Wylogowanie uzytkownika:" << endl;
+    ksiazkaAdresowa.wylogowanieUzytkownika();
     cout << "Logowanie uzytkownika:" << endl;
     ksiazkaAdresowa.logowanieUzytkownika();
+    cout << "Wylogowanie uzytkownika:" << endl;
+    ksiazkaAdresowa.wylogowanieUzytkownika();
     cout << "Zmiana hasla uzytkownika:" << endl;
     ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
     cout << "Wypisz wszystkich uzytkownikow:" << endl;
