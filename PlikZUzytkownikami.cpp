@@ -83,3 +83,5 @@ Uzytkownik PlikZUzytkownikami::pobierzDaneUzytkownika(string daneJednegoUzytkown
     }
     return uzytkownik;
 }
+
+

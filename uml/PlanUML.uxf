@@ -15,6 +15,7 @@
 --
 + KsiazkaAdresowa()
 + rejestracjaUzytkownika() : void
++ logowanieUzytkownika() : void
 + wypiszWszystkichUzytkownikow() : void
 </panel_attributes>
     <additional_attributes/>
