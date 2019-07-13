@@ -5,13 +5,14 @@
     <id>UMLClass</id>
     <coordinates>
       <x>196</x>
-      <y>28</y>
+      <y>7</y>
       <w>231</w>
-      <h>119</h>
+      <h>147</h>
     </coordinates>
     <panel_attributes>KsiazkaAdresowa
 --
 - UzytkownikMenedzer : uzytkownikMenedzer
+- AdresatMenedzer : adresatMenedzer
 --
 + KsiazkaAdresowa()
 + rejestracjaUzytkownika() : void
@@ -19,8 +20,8 @@
 + zmianaHaslaZalogowanegoUzytkownika() : void
 + wylogowanieUzytkownika() : void
 + wypiszWszystkichUzytkownikow() : void
--
-+ dodaj
++ dodajAdresata() : void
++ wypiszWszystkichAdresatow() : void
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -45,23 +46,25 @@
       <x>7</x>
       <y>273</y>
       <w>280</w>
-      <h>168</h>
+      <h>189</h>
     </coordinates>
     <panel_attributes>UzytkownikMenedzer
 --
 - idZalogowanegoUzytkownika : Integer
 - uzytkownicy : vector &lt;Uzytkownik&gt;
 - PlikZUzytkownikami : plikZUzytkownikami
++ czyZalogowany : Bool
+--
 - podajDaneNowegoUzytkownika() : Uzytkownik
 - pobierzIdNowegoUzytkownika() : Integer
 - czyIstniejeLogin() : Bool
---
++ pobierzIdZalogowanegoUzytkownika() : Integer
 + rejestracjaUzytkownika() : void
 + logowanieUzytkownika() : int
 + zmianaHaslaZalogowanegoUzytkownika() : void
 + wylogowanieUzytkownika() : void
 + wypiszWszystkichUzytkownikow() : void
-+ wczytajUzutkownikowZPliku() : void
++ wczytajUzytkownikowZPliku() : void
 
 </panel_attributes>
     <additional_attributes/>
@@ -76,12 +79,12 @@
     </coordinates>
     <panel_attributes>PlikZUzytkownikami
 --
-- czyPlikJestPusty() : Bool
 - nazwaPlikuZUzytkownikami : String
-- zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami() : String
-- pobierzDaneUzytkownika() Uzytkownik
 --
 PlikZUzytkownikami()
+- czyPlikJestPusty() : Bool
+- zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami() : String
+- pobierzDaneUzytkownika() Uzytkownik
 + dopiszUzytkownikaDoPliku() : void
 + wczytajUzutkownikowZPliku() : vector &lt;Uzytkownik&gt;
 + zapiszWszystkichUzytkownikowDoPliku() : void
@@ -114,10 +117,16 @@ PlikZUzytkownikami()
     <panel_attributes>AdresatMenedzer
 --
 - idOstatniegoAdresata : Integer
+- idZalogowanegoUzytkownika : Integer
 - adresaci : vector &lt;Adresat&gt;
 - PlikZAdresatami : plikZAdresatami
 --
-+ dodajAdresata : Integer</panel_attributes>
+AdresatMenedzer()
+- podajDaneNowegoAdresata() : Adresat
+- wyswietlDaneAdresata() : void
++ dodajAdresata() : void
++ wypiszWszystkichAdresatow() : void
++ ustawIdZalogowanegoUzytkownika() : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -146,12 +155,18 @@ PlikZUzytkownikami()
       <x>294</x>
       <y>476</y>
       <w>315</w>
-      <h>126</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>PlikZAdresatami
 --
-
---</panel_attributes>
+- nazwaPlikuZAdresatami : String
+--
+- czyPlikJestPusty() : Bool
+- zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami() : String
+- pobierzDaneAdresata() Uzytkownik
++ dopiszAdresataDoPliku() : void
++ wczytajAdresatowZPliku() : vector &lt;Adresat&gt;
++ zapiszWszystkichAdresatowDoPliku() : void</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

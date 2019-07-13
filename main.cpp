@@ -6,10 +6,14 @@ using namespace std;
 
 int main()
 {
-    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt");
+    KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt", "Adresaci.txt");
 
     //cout << "Rejestracja uzytkownika" << endl;
     //ksiazkaAdresowa.rejestracjaUzytkownika();
+
+    cout << endl << "Wypisz wszystkich adresatow:" << endl;
+    ksiazkaAdresowa.wypiszWszystkichAdresatow();
+
 
     cout << endl << "Wypisz wszystkich uzytkownikow:" << endl;
     ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
@@ -25,6 +29,10 @@ int main()
 
     cout << endl << "Logowanie uzytkownika:" << endl;
     ksiazkaAdresowa.logowanieUzytkownika();
+
+    cout << endl << "Wypisz wszystkich adresatow:" << endl;
+    ksiazkaAdresowa.wypiszWszystkichAdresatow();
+
 
     cout << endl << "Dodaj adresata:" << endl;
     ksiazkaAdresowa.dodajAdresata();
