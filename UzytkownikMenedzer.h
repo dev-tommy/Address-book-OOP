@@ -20,13 +20,16 @@ class UzytkownikMenedzer {
     int pobierzIdNowegoUzytkownika();
     bool czyIstniejeLogin(string login);
 
+
 public:
+    int pobierzIdZalogowanegoUzytkownika();
+    bool czyZalogowany;
     UzytkownikMenedzer(string nazwaPlikuZUzytkownikami);
     void rejestracjaUzytkownika();
     void logowanieUzytkownika();
     void wypiszWszystkichUzytkownikow();
     void wylogowanieUzytkownika();
-    void wczytajUzutkownikowZPliku();
+    void wczytajUzytkownikowZPliku();
     void zmianaHaslaZalogowanegoUzytkownika();
 };
 
