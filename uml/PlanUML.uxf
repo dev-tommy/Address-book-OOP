@@ -12,9 +12,11 @@
     <panel_attributes>KsiazkaAdresowa
 --
 - UzytkownikMenedzer : uzytkownikMenedzer
-- AdresatMenedzer : adresatMenedzer
+- AdresatMenedzer : *adresatMenedzer
+- NAZWA_PLIKU_Z_ADRESATAMI : String
 --
 + KsiazkaAdresowa()
++ ~KsiazkaAdresowa()
 + rejestracjaUzytkownika() : void
 + logowanieUzytkownika() : void
 + zmianaHaslaZalogowanegoUzytkownika() : void

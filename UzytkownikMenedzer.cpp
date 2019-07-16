@@ -1,13 +1,9 @@
 #include "UzytkownikMenedzer.h"
 
 UzytkownikMenedzer::UzytkownikMenedzer(string nazwaPlikuZUzytkownikami) : plikZUzytkownikami(nazwaPlikuZUzytkownikami) {
+    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
     idZalogowanegoUzytkownika = 0;
     czyZalogowany = false;
-}
-
-void UzytkownikMenedzer::wczytajUzytkownikowZPliku() {
-    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
-
 }
 
 void UzytkownikMenedzer::rejestracjaUzytkownika() {
