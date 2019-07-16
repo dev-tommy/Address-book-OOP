@@ -89,7 +89,7 @@ vector<Adresat> PlikZAdresatami::wczytajAdresatowZPliku(int idZalogowanegoUzytko
     if (plikTekstowy.good() == true) {
         while (getline(plikTekstowy, daneJednegoAdresataOddzielonePionowymiKreskami)) {
                 adresat = pobierzDaneAdresata(daneJednegoAdresataOddzielonePionowymiKreskami);
-                adresaci.push_back(adresat);
+                if (idZalogowanegoUzytkownika == adresat.pobierzIdUzytkownika()) adresaci.push_back(adresat);
         }
         daneOstaniegoAdresataWPliku = daneJednegoAdresataOddzielonePionowymiKreskami;
         plikTekstowy.close();
