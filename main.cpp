@@ -8,8 +8,7 @@ int main()
 {
     KsiazkaAdresowa ksiazkaAdresowa("Uzytkownicy.txt", "Adresaci.txt");
 
-    //cout << "Rejestracja uzytkownika" << endl;
-    //ksiazkaAdresowa.rejestracjaUzytkownika();
+
 
     //cout << endl << "Wypisz wszystkich adresatow:" << endl;
     //ksiazkaAdresowa.wypiszWszystkichAdresatow();
@@ -17,6 +16,9 @@ int main()
 
     cout << endl << "Wypisz wszystkich uzytkownikow:" << endl;
     ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
+
+    cout << "Rejestracja uzytkownika" << endl;
+    ksiazkaAdresowa.rejestracjaUzytkownika();
 
     //cout << "Zmiana hasla uzytkownika:" << endl;
     //ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();

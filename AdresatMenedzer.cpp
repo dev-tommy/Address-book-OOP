@@ -1,6 +1,7 @@
 #include "AdresatMenedzer.h"
 
 AdresatMenedzer::AdresatMenedzer(string nazwaPlikuZAdresatami) : plikZAdresatami(nazwaPlikuZAdresatami) {
+    adresaci = plikZAdresatami.wczytajAdresatowZPliku(idZalogowanegoUzytkownika);
     idZalogowanegoUzytkownika = 0;
 
 }
@@ -63,6 +64,3 @@ void AdresatMenedzer::wyswietlDaneAdresata(Adresat adresat) {
     cout << "Adres:              " << adresat.pobierzAdres() << endl;
 }
 
-void AdresatMenedzer::wczytajAdresatowZPliku() {
-    adresaci = plikZAdresatami.wczytajAdresatowZPliku(idZalogowanegoUzytkownika);
-}
