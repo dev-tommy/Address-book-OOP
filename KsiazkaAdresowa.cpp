@@ -23,7 +23,7 @@ void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
     uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
 }
 
-void KsiazkaAdresowa:: wylogowanieUzytkownika() {
+void KsiazkaAdresowa::wylogowanieUzytkownika() {
     uzytkownikMenedzer.wylogowanieUzytkownika();
     delete adresatMenedzer;
     adresatMenedzer = NULL;
@@ -49,4 +49,8 @@ void KsiazkaAdresowa::wypiszWszystkichAdresatow() {
     } else {
         cout << "Uzytkownik nie zalogowany" << endl;
     }
+}
+
+bool KsiazkaAdresowa::czyUzytkownikZalogowany() {
+    return uzytkownikMenedzer.czyZalogowany;
 }

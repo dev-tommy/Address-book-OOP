@@ -23,6 +23,7 @@ public:
     void wypiszWszystkichUzytkownikow();
     void dodajAdresata();
     void wypiszWszystkichAdresatow();
+    bool czyUzytkownikZalogowany();
 };
 
 #endif // KSIAZKAADRESOWA_H
