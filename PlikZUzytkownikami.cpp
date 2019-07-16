@@ -17,7 +17,6 @@ void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik) {
         plikTekstowy.close();
     } else
         cout << "Nie udalo sie otworzyc pliku " << nazwaPlikuZUzytkownikami << " i zapisac w nim danych." << endl;
-    //plikTekstowy.close();
 }
 
 bool PlikZUzytkownikami::czyPlikJestPusty(fstream &plikTekstowy) {
