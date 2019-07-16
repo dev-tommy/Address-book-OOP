@@ -116,7 +116,6 @@ PlikZUzytkownikami()
     </coordinates>
     <panel_attributes>AdresatMenedzer
 --
-- idOstatniegoAdresata : Integer
 - idZalogowanegoUzytkownika : Integer
 - adresaci : vector &lt;Adresat&gt;
 - PlikZAdresatami : plikZAdresatami
@@ -160,13 +159,15 @@ AdresatMenedzer()
     <panel_attributes>PlikZAdresatami
 --
 - nazwaPlikuZAdresatami : String
+- idOstatniegoAdresata : Integer
 --
 - czyPlikJestPusty() : Bool
 - zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami() : String
 - pobierzDaneAdresata() Uzytkownik
 + dopiszAdresataDoPliku() : void
 + wczytajAdresatowZPliku() : vector &lt;Adresat&gt;
-+ zapiszWszystkichAdresatowDoPliku() : void</panel_attributes>
++ zapiszWszystkichAdresatowDoPliku() : void
++ pobierzIdOstatniegoAdresata() : Integer</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

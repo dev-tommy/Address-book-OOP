@@ -11,8 +11,8 @@ int main()
     //cout << "Rejestracja uzytkownika" << endl;
     //ksiazkaAdresowa.rejestracjaUzytkownika();
 
-    cout << endl << "Wypisz wszystkich adresatow:" << endl;
-    ksiazkaAdresowa.wypiszWszystkichAdresatow();
+    //cout << endl << "Wypisz wszystkich adresatow:" << endl;
+    //ksiazkaAdresowa.wypiszWszystkichAdresatow();
 
 
     cout << endl << "Wypisz wszystkich uzytkownikow:" << endl;
@@ -21,11 +21,11 @@ int main()
     //cout << "Zmiana hasla uzytkownika:" << endl;
     //ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
 
-    cout << endl << "Wylogowanie uzytkownika:" << endl;
-    ksiazkaAdresowa.wylogowanieUzytkownika();
+    //cout << endl << "Wylogowanie uzytkownika:" << endl;
+    //ksiazkaAdresowa.wylogowanieUzytkownika();
 
-    cout << endl << "Dodaj adresata:" << endl;
-    ksiazkaAdresowa.dodajAdresata();
+    //cout << endl << "Dodaj adresata:" << endl;
+    //ksiazkaAdresowa.dodajAdresata();
 
     cout << endl << "Logowanie uzytkownika:" << endl;
     ksiazkaAdresowa.logowanieUzytkownika();
@@ -33,9 +33,6 @@ int main()
     cout << endl << "Wypisz wszystkich adresatow:" << endl;
     ksiazkaAdresowa.wypiszWszystkichAdresatow();
 
-
-    cout << endl << "Dodaj adresata:" << endl;
-    ksiazkaAdresowa.dodajAdresata();
 
     cout << endl << "Dodaj adresata:" << endl;
     ksiazkaAdresowa.dodajAdresata();

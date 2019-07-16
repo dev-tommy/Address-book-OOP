@@ -1,24 +1,21 @@
 #include "AdresatMenedzer.h"
 
 AdresatMenedzer::AdresatMenedzer(string nazwaPlikuZAdresatami) : plikZAdresatami(nazwaPlikuZAdresatami) {
-    idOstatniegoAdresata = 0;
     idZalogowanegoUzytkownika = 0;
 
 }
 void AdresatMenedzer::dodajAdresata() {
     Adresat adresat;
-
-    adresat = podajDaneNowegoAdresata(idZalogowanegoUzytkownika, idOstatniegoAdresata);
+    adresat = podajDaneNowegoAdresata(idZalogowanegoUzytkownika);
     adresaci.push_back(adresat);
     plikZAdresatami.dopiszAdresataDoPliku(adresat);
-    idOstatniegoAdresata++;
 }
 
-Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata) {
+Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika) {
     Adresat adresat;
     string imie, nazwisko, numerTelefonu, email, adres;
 
-    adresat.ustawId(++idOstatniegoAdresata);
+    adresat.ustawId(plikZAdresatami.pobierzIdOstatniegoAdresata()+1);
     adresat.ustawIdUzytkownika(idZalogowanegoUzytkownika);
 
     cin.sync();
@@ -45,8 +42,9 @@ Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, 
 }
 
 void AdresatMenedzer::wypiszWszystkichAdresatow() {
-    for (int i = 0; i < adresaci.size(); i++) {
-        if (idZalogowanegoUzytkownika = adresaci[i].pobierzIdUzytkownika()) {
+   for (int i = 0; i < adresaci.size(); i++) {
+
+        if (idZalogowanegoUzytkownika == adresaci[i].pobierzIdUzytkownika()) {
             wyswietlDaneAdresata(adresaci[i]);
         }
     }
