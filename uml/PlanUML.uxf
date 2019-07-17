@@ -126,6 +126,7 @@ AdresatMenedzer()
 - podajDaneNowegoAdresata() : Adresat
 - wyswietlDaneAdresata() : void
 + dodajAdresata() : void
++ usunAdresata() : void
 + wypiszWszystkichAdresatow() : void
 + ustawIdZalogowanegoUzytkownika() : void</panel_attributes>
     <additional_attributes/>
@@ -169,7 +170,8 @@ AdresatMenedzer()
 + dopiszAdresataDoPliku() : void
 + wczytajAdresatowZPliku() : vector &lt;Adresat&gt;
 + zapiszWszystkichAdresatowDoPliku() : void
-+ pobierzIdOstatniegoAdresata() : Integer</panel_attributes>
++ pobierzIdOstatniegoAdresata() : Integer
++ usunAdresataZPliku() : void</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

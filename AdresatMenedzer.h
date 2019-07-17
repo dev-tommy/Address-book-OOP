@@ -25,6 +25,7 @@ class AdresatMenedzer {
 public:
     AdresatMenedzer(string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika);
     void dodajAdresata();
+    void usunAdresata();
     void wypiszWszystkichAdresatow();
     void ustawIdZalogowanegoUzytkownika(int idZalogowanegoUzytkownika);
 
