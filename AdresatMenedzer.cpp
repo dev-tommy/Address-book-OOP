@@ -19,7 +19,7 @@ void AdresatMenedzer::usunAdresata() {
     bool czyIstniejeAdresat = false;
     system("cls");
     cout << ">>> USUWANIE WYBRANEGO ADRESATA <<<" << endl << endl;
-    cout << "Podaj ID adresata do usunięcia: ";
+    cout << "Podaj ID adresata do usuniecia: ";
     cin.sync();
     cin >> idAdresataDoUsuniecia;
     cout << endl;
@@ -43,13 +43,7 @@ void AdresatMenedzer::usunAdresata() {
     if (!czyIstniejeAdresat) {
         cout << "Adresat o podanym ID nie zostal znaleziony! " << endl;
         system("pause");
-        return;
     }
-
-
-
-
-
 }
 
 Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika) {

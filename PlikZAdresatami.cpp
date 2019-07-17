@@ -47,7 +47,6 @@ vector<Adresat> PlikZAdresatami::usunAdresataZPliku(int idAdresataDoUsuniecia, i
         usunPlik(NAZWA_PLIKU_Z_ADRESATAMI);
         zmienNazwePliku(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
         cout << "Usunieto adresata o ID: " << idAdresataDoUsuniecia << endl;
-        system("pause");
 
     }
 
