@@ -38,6 +38,7 @@ char MetodyPomocnicze::wczytajZnak() {
     char znak  = {0};
 
     while (true) {
+        cin.sync();
         getline(cin, wejscie);
 
         if (wejscie.length() == 1) {

@@ -41,6 +41,9 @@ void Menu::wyswietl() {
                 system("pause");
                 break;
             case '5':
+                system("cls");
+                ksiazkaAdresowa.usunAdresata();
+                system("pause");
                 break;
             case '6':
                 break;
@@ -82,7 +85,7 @@ char Menu::wybierzOpcjeZMenuUzytkownika() {
     cout << "2. Niedostepne: Wyszukaj po imieniu" << endl;
     cout << "3. Niedostepne: Wyszukaj po nazwisku" << endl;
     cout << "4. Wyswietl adresatow" << endl;
-    cout << "5. Niedostepne: Usun adresata" << endl;
+    cout << "5. Usun adresata" << endl;
     cout << "6. Niedostepne: Edytuj adresata" << endl;
     cout << "---------------------------" << endl;
     cout << "7. Zmien haslo" << endl;

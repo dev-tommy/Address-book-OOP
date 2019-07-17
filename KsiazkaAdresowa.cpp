@@ -43,6 +43,16 @@ void KsiazkaAdresowa::dodajAdresata() {
 
 }
 
+void KsiazkaAdresowa::usunAdresata() {
+    if (uzytkownikMenedzer.czyZalogowany) {
+        adresatMenedzer->usunAdresata();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
+
+}
+
+
 void KsiazkaAdresowa::wypiszWszystkichAdresatow() {
     if (uzytkownikMenedzer.czyZalogowany) {
         adresatMenedzer->wypiszWszystkichAdresatow();

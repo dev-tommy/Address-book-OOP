@@ -14,6 +14,48 @@ string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKresk
     return liniaZDanymiAdresata;
 }
 
+
+vector<Adresat> PlikZAdresatami::usunAdresataZPliku(int idAdresataDoUsuniecia, int idZalogowanegoUzytkownika) {
+    fstream odczytywanyPlikTekstowy, tymczasowyPlikTekstowy;
+    string wczytanaLinia = "";
+    Adresat adresatTymczasowy;
+    const string NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI = "Adresaci.tmp";
+    int numerWczytanejLinii = 1;
+
+    odczytywanyPlikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+    tymczasowyPlikTekstowy.open(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI.c_str(), ios::out | ios::app);
+
+    if ( (odczytywanyPlikTekstowy.good() == true) &&(tymczasowyPlikTekstowy.good() == true) && (idAdresataDoUsuniecia != 0) ) {
+        getline(odczytywanyPlikTekstowy, wczytanaLinia);
+        adresatTymczasowy = pobierzDaneAdresata(wczytanaLinia);
+        if (adresatTymczasowy.pobierzId() != idAdresataDoUsuniecia) {
+                tymczasowyPlikTekstowy << wczytanaLinia;
+            }
+        while (getline(odczytywanyPlikTekstowy, wczytanaLinia)) {
+            adresatTymczasowy = pobierzDaneAdresata(wczytanaLinia);
+            if ((adresatTymczasowy.pobierzId() == idAdresataDoUsuniecia) && (adresatTymczasowy.pobierzIdUzytkownika() == idZalogowanegoUzytkownika)) {
+                continue;
+            }
+            else {
+                tymczasowyPlikTekstowy << endl;
+                tymczasowyPlikTekstowy << wczytanaLinia;
+            }
+        }
+        odczytywanyPlikTekstowy.close();
+        tymczasowyPlikTekstowy.close();
+
+        usunPlik(NAZWA_PLIKU_Z_ADRESATAMI);
+        zmienNazwePliku(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
+        cout << "Usunieto adresata o ID: " << idAdresataDoUsuniecia << endl;
+
+    }
+
+    if (odczytywanyPlikTekstowy.good()) odczytywanyPlikTekstowy.close();
+    if (tymczasowyPlikTekstowy.good()) tymczasowyPlikTekstowy.close();
+
+    return wczytajAdresatowZPliku(idZalogowanegoUzytkownika);
+}
+
 Adresat PlikZAdresatami::pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami) {
     Adresat adresat;
     string pojedynczaDanaAdresata = "";
@@ -126,5 +168,17 @@ int PlikZAdresatami::pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(strin
 
 int PlikZAdresatami::pobierzIdOstatniegoAdresata() {
     return idOstatniegoAdresata;
+}
+
+void PlikZAdresatami::usunPlik(string nazwaPlikuZRozszerzeniem) {
+    if (remove(nazwaPlikuZRozszerzeniem.c_str()) == 0) {}
+    else
+        cout << "Nie udalo sie usunac pliku " << nazwaPlikuZRozszerzeniem << endl;
+}
+
+void PlikZAdresatami::zmienNazwePliku(string staraNazwa, string nowaNazwa) {
+    if (rename(staraNazwa.c_str(), nowaNazwa.c_str()) == 0) {}
+    else
+        cout << "Nazwa pliku nie zostala zmieniona." << staraNazwa << endl;
 }
 

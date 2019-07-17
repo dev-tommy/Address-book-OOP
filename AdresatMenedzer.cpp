@@ -13,6 +13,39 @@ void AdresatMenedzer::dodajAdresata() {
     plikZAdresatami.dopiszAdresataDoPliku(adresat);
 }
 
+void AdresatMenedzer::usunAdresata() {
+    int idAdresataDoUsuniecia;
+    char znak;
+    bool czyIstniejeAdresat = false;
+    system("cls");
+    cout << ">>> USUWANIE WYBRANEGO ADRESATA <<<" << endl << endl;
+    cout << "Podaj ID adresata do usuniecia: ";
+    cin.sync();
+    cin >> idAdresataDoUsuniecia;
+    cout << endl;
+
+    for (int i=0; i<adresaci.size(); i++) {
+        if ( idAdresataDoUsuniecia == adresaci[i].pobierzId()) {
+            wyswietlDaneAdresata(adresaci[i]);
+            czyIstniejeAdresat = true;
+            cout << endl << "Potwierdz naciskajac klawisz 't': ";
+            znak = MetodyPomocnicze::wczytajZnak();
+            if (znak == 't') {
+                adresaci = plikZAdresatami.usunAdresataZPliku(idAdresataDoUsuniecia, ID_ZALOGOWANEGO_UZYTKOWNIKA);
+                return;
+            } else {
+                cout << "Wybrany adresat NIE zostal usuniety" << endl << endl;
+                system("pause");
+                return;
+            }
+        }
+    }
+    if (!czyIstniejeAdresat) {
+        cout << "Adresat o podanym ID nie zostal znaleziony! " << endl;
+        system("pause");
+    }
+}
+
 Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika) {
     Adresat adresat;
     string imie, nazwisko, numerTelefonu, email, adres;
@@ -45,7 +78,7 @@ Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika) 
 
 void AdresatMenedzer::wypiszWszystkichAdresatow() {
     for (int i = 0; i < adresaci.size(); i++) {
-            wyswietlDaneAdresata(adresaci[i]);
+        wyswietlDaneAdresata(adresaci[i]);
     }
 }
 
