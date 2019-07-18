@@ -52,6 +52,15 @@ void KsiazkaAdresowa::usunAdresata() {
 
 }
 
+void KsiazkaAdresowa::edytujAdresata() {
+    if (uzytkownikMenedzer.czyZalogowany) {
+        adresatMenedzer->edytujAdresata();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
+}
+
+
 
 void KsiazkaAdresowa::wypiszWszystkichAdresatow() {
     if (uzytkownikMenedzer.czyZalogowany) {

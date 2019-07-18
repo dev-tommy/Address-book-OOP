@@ -23,6 +23,7 @@ public:
     void wypiszWszystkichUzytkownikow();
     void dodajAdresata();
     void usunAdresata();
+    void edytujAdresata();
     void wypiszWszystkichAdresatow();
     bool czyUzytkownikZalogowany();
 };
