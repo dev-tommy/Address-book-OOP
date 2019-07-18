@@ -19,8 +19,8 @@ vector<Adresat> PlikZAdresatami::usunAdresataZPliku(int idAdresataDoUsuniecia, i
     fstream odczytywanyPlikTekstowy, tymczasowyPlikTekstowy;
     string wczytanaLinia = "";
     Adresat adresatTymczasowy;
-    const string NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI = "Adresaci.tmp";
-    int numerWczytanejLinii = 1;
+    const string NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI = "AdresaciUsuwanie.tmp";
+    //int numerWczytanejLinii = 1;
 
     odczytywanyPlikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
     tymczasowyPlikTekstowy.open(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI.c_str(), ios::out | ios::app);
@@ -54,6 +54,51 @@ vector<Adresat> PlikZAdresatami::usunAdresataZPliku(int idAdresataDoUsuniecia, i
     if (tymczasowyPlikTekstowy.good()) tymczasowyPlikTekstowy.close();
 
     return wczytajAdresatowZPliku(idZalogowanegoUzytkownika);
+}
+
+vector<Adresat> PlikZAdresatami::edytujAdresataWPliku(Adresat adresatTymczasowy, int idZalogowanegoUzytkownika) {
+    fstream odczytywanyPlikTekstowy, tymczasowyPlikTekstowy;
+    string wczytanaLinia = "";
+    const string NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI = "AdresaciEdycja.tmp";
+    int idAdresataDoEdycji = adresatTymczasowy.pobierzId();
+    Adresat pobranyAdresat;
+
+    odczytywanyPlikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
+    tymczasowyPlikTekstowy.open(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI.c_str(), ios::out | ios::app);
+    if ( (odczytywanyPlikTekstowy.good() == true) &&(tymczasowyPlikTekstowy.good() == true) && (idAdresataDoEdycji != 0) ) {
+        getline(odczytywanyPlikTekstowy, wczytanaLinia);
+        pobranyAdresat = pobierzDaneAdresata(wczytanaLinia);
+        if (pobranyAdresat.pobierzId() != idAdresataDoEdycji) {
+                tymczasowyPlikTekstowy << wczytanaLinia;
+            }
+            else {
+                tymczasowyPlikTekstowy << zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(adresatTymczasowy);
+            }
+        while (getline(odczytywanyPlikTekstowy, wczytanaLinia)) {
+            pobranyAdresat = pobierzDaneAdresata(wczytanaLinia);
+            if ((pobranyAdresat.pobierzIdUzytkownika() == idZalogowanegoUzytkownika) &&  (pobranyAdresat.pobierzId() == idAdresataDoEdycji)) {
+                tymczasowyPlikTekstowy << endl;
+                tymczasowyPlikTekstowy << zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(adresatTymczasowy);
+             }
+            else {
+                tymczasowyPlikTekstowy << endl;
+                tymczasowyPlikTekstowy << wczytanaLinia;
+            }
+        }
+        odczytywanyPlikTekstowy.close();
+        tymczasowyPlikTekstowy.close();
+
+        usunPlik(NAZWA_PLIKU_Z_ADRESATAMI);
+        zmienNazwePliku(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
+        cout << "Nadpisano adresata o ID: " << idAdresataDoEdycji << endl;
+
+    }
+
+    if (odczytywanyPlikTekstowy.good()) odczytywanyPlikTekstowy.close();
+    if (tymczasowyPlikTekstowy.good()) tymczasowyPlikTekstowy.close();
+
+    return wczytajAdresatowZPliku(idZalogowanegoUzytkownika);
+
 }
 
 Adresat PlikZAdresatami::pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami) {

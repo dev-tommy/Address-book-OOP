@@ -11,7 +11,9 @@ using namespace std;
 class Menu {
     char wybierzOpcjeZMenuGlownego();
     char wybierzOpcjeZMenuUzytkownika();
+
 public:
+    static char wybierzOpcjeZMenuEdycja();
     void wyswietl();
 
 };

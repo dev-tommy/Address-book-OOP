@@ -46,6 +46,90 @@ void AdresatMenedzer::usunAdresata() {
     }
 }
 
+void AdresatMenedzer::edytujAdresata() {
+    int idAdresataDoEdycji;
+    Adresat adresatTymczasowy;
+    char wybor;
+    bool czyIstniejeAdresat = false;
+    system("cls");
+    cout << ">>> EDYCJA WYBRANEGO ADRESATA <<<" << endl << endl;
+    cout << "Podaj ID adresata do edycji: ";
+    cin.sync();
+    cin >> idAdresataDoEdycji;
+    cout << endl;
+    for (int i=0; i<adresaci.size(); i++) {
+        if ( idAdresataDoEdycji == adresaci[i].pobierzId()) {
+            wyswietlDaneAdresata(adresaci[i]);
+            czyIstniejeAdresat = true;
+            adresatTymczasowy = adresaci[i];
+            cout << endl << "Potwierdz naciskajac klawisz 't': ";
+            wybor = MetodyPomocnicze::wczytajZnak();
+            if (wybor == 't') {
+                system("cls");
+                cout << endl << "   >>> MENU  EDYCJA <<<" << endl;
+                cout << "---------------------------" << endl;
+                cout << "Ktore dane zaktualizowac: " << endl;
+                cout << "1 - Imie" << endl;
+                cout << "2 - Nazwisko" << endl;
+                cout << "3 - Numer telefonu" << endl;
+                cout << "4 - Email" << endl;
+                cout << "5 - Adres" << endl;
+                cout << "6 - Powrot " << endl;
+                cout << endl << "Twoj wybor: ";
+
+                wybor = MetodyPomocnicze::wczytajZnak();
+
+                switch (wybor) {
+                case '1':
+                    cout << "Podaj nowe imie: ";
+                    adresatTymczasowy.ustawImie(MetodyPomocnicze::wczytajLinie());
+                    //adresaci[i].imie = zamienPierwszaLitereNaDuzaAPozostaleNaMale(adresaci[i].imie);
+                    //zaktualizujDaneWybranegoAdresata(adresaci[i], idEdytowanegoAdresata);
+                    break;
+                case '2':
+                    cout << "Podaj nowe nazwisko: ";
+                   adresatTymczasowy.ustawNazwisko(MetodyPomocnicze::wczytajLinie());
+                    //adresaci[i].nazwisko = zamienPierwszaLitereNaDuzaAPozostaleNaMale(adresaci[i].nazwisko);
+                    //zaktualizujDaneWybranegoAdresata(adresaci[i], idEdytowanegoAdresata);
+                    break;
+                case '3':
+                    cout << "Podaj nowy numer telefonu: ";
+                    adresatTymczasowy.ustawNumerTelefonu(MetodyPomocnicze::wczytajLinie());
+                    //zaktualizujDaneWybranegoAdresata(adresaci[i], idEdytowanegoAdresata);
+                    break;
+                case '4':
+                    cout << "Podaj nowy email: ";
+                    adresatTymczasowy.ustawEmail(MetodyPomocnicze::wczytajLinie());
+                    //zaktualizujDaneWybranegoAdresata(adresaci[i], idEdytowanegoAdresata);
+                    break;
+                case '5':
+                    cout << "Podaj nowy adres zamieszkania: ";
+                    adresatTymczasowy.ustawAdres(MetodyPomocnicze::wczytajLinie());
+                    //zaktualizujDaneWybranegoAdresata(adresaci[i], idEdytowanegoAdresata);
+                    break;
+                case '6':
+                    cout << endl << "Powrot do menu uzytkownika" << endl << endl;
+                    break;
+                default:
+                    cout << endl << "Nie ma takiej opcji w menu! Powrot do menu uzytkownika." << endl << endl;
+                    break;
+                }
+                wyswietlDaneAdresata(adresatTymczasowy);
+                adresaci = plikZAdresatami.edytujAdresataWPliku(adresatTymczasowy, ID_ZALOGOWANEGO_UZYTKOWNIKA);
+                return;
+            } else {
+                cout << "Wybrany adresat NIE zostal usuniety" << endl << endl;
+                system("pause");
+                return;
+            }
+        }
+    }
+    if (!czyIstniejeAdresat) {
+        cout << "Adresat o podanym ID nie zostal znaleziony! " << endl;
+        system("pause");
+    }
+}
+
 Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika) {
     Adresat adresat;
     string imie, nazwisko, numerTelefonu, email, adres;
