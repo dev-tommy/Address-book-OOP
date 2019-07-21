@@ -3,7 +3,7 @@
 KsiazkaAdresowa::KsiazkaAdresowa(string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami):
     uzytkownikMenedzer(nazwaPlikuZUzytkownikami),
     NAZWA_PLIKU_Z_ADRESATAMI(nazwaPlikuZAdresatami) {
-        adresatMenedzer = NULL;
+    adresatMenedzer = NULL;
 }
 KsiazkaAdresowa::~KsiazkaAdresowa() {
     delete adresatMenedzer;
@@ -60,7 +60,21 @@ void KsiazkaAdresowa::edytujAdresata() {
     }
 }
 
+void KsiazkaAdresowa::wyszukajAdresataPoImieniu() {
+    if (uzytkownikMenedzer.czyZalogowany) {
+        adresatMenedzer->wyszukajAdresataPoImieniu();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
+}
 
+void KsiazkaAdresowa::wyszukajAdresataPoNazwisku() {
+    if (uzytkownikMenedzer.czyZalogowany) {
+        adresatMenedzer->wyszukajAdresataPoNazwisku();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
+}
 
 void KsiazkaAdresowa::wypiszWszystkichAdresatow() {
     if (uzytkownikMenedzer.czyZalogowany) {
