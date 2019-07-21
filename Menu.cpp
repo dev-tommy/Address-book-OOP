@@ -32,23 +32,25 @@ void Menu::wyswietl() {
                 ksiazkaAdresowa.dodajAdresata();
                 break;
             case '2':
+                ksiazkaAdresowa.wyszukajAdresataPoImieniu();
                 break;
             case '3':
+                ksiazkaAdresowa.wyszukajAdresataPoNazwisku();
                 break;
             case '4':
-                system("cls");
+                //system("cls");
                 ksiazkaAdresowa.wypiszWszystkichAdresatow();
-                system("pause");
+                //system("pause");
                 break;
             case '5':
-                system("cls");
+                //system("cls");
                 ksiazkaAdresowa.usunAdresata();
-                system("pause");
+                //system("pause");
                 break;
             case '6':
-                system("cls");
+                //system("cls");
                 ksiazkaAdresowa.edytujAdresata();
-                system("pause");
+                //system("pause");
                 break;
             case '7':
                 ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
@@ -85,8 +87,8 @@ char Menu::wybierzOpcjeZMenuUzytkownika() {
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
     cout << "---------------------------" << endl;
     cout << "1. Dodaj adresata" << endl;
-    cout << "2. Niedostepne: Wyszukaj po imieniu" << endl;
-    cout << "3. Niedostepne: Wyszukaj po nazwisku" << endl;
+    cout << "2. Wyszukaj po imieniu" << endl;
+    cout << "3. Wyszukaj po nazwisku" << endl;
     cout << "4. Wyswietl adresatow" << endl;
     cout << "5. Usun adresata" << endl;
     cout << "6. Edytuj adresata" << endl;

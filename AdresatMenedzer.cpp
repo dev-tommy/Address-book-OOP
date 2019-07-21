@@ -161,9 +161,64 @@ Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika) 
 }
 
 void AdresatMenedzer::wypiszWszystkichAdresatow() {
+    system("cls");
     for (int i = 0; i < adresaci.size(); i++) {
         wyswietlDaneAdresata(adresaci[i]);
     }
+    system("pause");
+}
+
+void AdresatMenedzer::wyszukajAdresataPoImieniu() {
+    string imiePoszukiwanegoAdresata = "";
+    bool czyZnaleziono = false;
+
+    system("cls");
+    if (!adresaci.empty()) {
+        cout << ">>> WYSZUKIWANIE ADRESATOW O IMIENIU <<<" << endl << endl;
+
+        cout << "Wyszukaj adresatow o imieniu: ";
+        imiePoszukiwanegoAdresata = MetodyPomocnicze::wczytajLinie();
+        imiePoszukiwanegoAdresata = MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(imiePoszukiwanegoAdresata);
+
+        for (int i=0; i<adresaci.size(); i++) {
+            if (adresaci[i].pobierzImie() == imiePoszukiwanegoAdresata) {
+                    wyswietlDaneAdresata(adresaci[i]);
+                    czyZnaleziono = true;
+            }
+        }
+        if (!czyZnaleziono) cout << "Nie znaleziono adresata o imieniu: " << imiePoszukiwanegoAdresata << endl;
+
+    } else {
+        cout << endl << "Ksiazka adresowa jest pusta" << endl << endl;
+    }
+    cout << endl;
+    system("pause");
+}
+
+void AdresatMenedzer::wyszukajAdresataPoNazwisku() {
+    string nazwiskoPoszukiwanegoAdresata;
+    bool czyZnaleziono = false;
+
+    system("cls");
+    if (!adresaci.empty()) {
+        cout << ">>> WYSZUKIWANIE ADRESATOW O NAZWISKU <<<" << endl << endl;
+
+        cout << "Wyszukaj adresatow o nazwisku: ";
+        nazwiskoPoszukiwanegoAdresata = MetodyPomocnicze::wczytajLinie();
+        nazwiskoPoszukiwanegoAdresata = MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(nazwiskoPoszukiwanegoAdresata);
+
+        for (int i=0; i<adresaci.size(); i++) {
+            if (adresaci[i].pobierzNazwisko() == nazwiskoPoszukiwanegoAdresata) {
+                    wyswietlDaneAdresata(adresaci[i]);
+                    czyZnaleziono = true;
+            }
+        }
+        if (!czyZnaleziono) cout << "Nie znaleziono adresata o nazwisku: " << nazwiskoPoszukiwanegoAdresata << endl;
+    } else {
+        cout << endl << "Ksiazka adresowa jest pusta." << endl << endl;
+    }
+    cout << endl;
+    system("pause");
 }
 
 void AdresatMenedzer::wyswietlDaneAdresata(Adresat adresat) {

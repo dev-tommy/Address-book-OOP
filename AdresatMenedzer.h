@@ -28,6 +28,8 @@ public:
     void usunAdresata();
     void edytujAdresata();
     void wypiszWszystkichAdresatow();
+    void wyszukajAdresataPoImieniu();
+    void wyszukajAdresataPoNazwisku();
     void ustawIdZalogowanegoUzytkownika(int idZalogowanegoUzytkownika);
 
 };
