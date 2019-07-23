@@ -16,16 +16,6 @@ bool PlikTekstowy::czyPlikJestPusty() {
     }
 }
 
-void PlikTekstowy::dopisz(string tekst) {
-    fstream plikTekstowy;
-    plikTekstowy.open(pobierzNazwePliku().c_str(), ios::app);
-    if (plikTekstowy.good() == true) {
-        if (czyPlikJestPusty())
-            plikTekstowy << "To jest poczatek pliku" << endl;
-        plikTekstowy << tekst << endl;
-    }
-    plikTekstowy.close();
-}
 
 string PlikTekstowy::pobierzNazwePliku() {
     return NAZWA_PLIKU;

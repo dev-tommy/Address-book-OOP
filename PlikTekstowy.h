@@ -18,7 +18,6 @@ class PlikTekstowy {
 public:
     PlikTekstowy(string nazwaPliku);
     bool czyPlikJestPusty();
-    void dopisz(string tekst);
     string pobierzNazwePliku();
 };
 
