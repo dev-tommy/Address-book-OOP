@@ -74,8 +74,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>7</x>
-      <y>476</y>
+      <x>14</x>
+      <y>595</y>
       <w>280</w>
       <h>126</h>
     </coordinates>
@@ -84,7 +84,6 @@
 - nazwaPlikuZUzytkownikami : String
 --
 PlikZUzytkownikami()
-- czyPlikJestPusty() : Bool
 - zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami() : String
 - pobierzDaneUzytkownika() Uzytkownik
 + dopiszUzytkownikaDoPliku() : void
@@ -154,8 +153,8 @@ AdresatMenedzer()
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>294</x>
-      <y>476</y>
+      <x>308</x>
+      <y>595</y>
       <w>315</w>
       <h>140</h>
     </coordinates>
@@ -164,7 +163,6 @@ AdresatMenedzer()
 - nazwaPlikuZAdresatami : String
 - idOstatniegoAdresata : Integer
 --
-- czyPlikJestPusty() : Bool
 - zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami() : String
 - pobierzDaneAdresata() Uzytkownik
 + dopiszAdresataDoPliku() : void
@@ -172,6 +170,23 @@ AdresatMenedzer()
 + zapiszWszystkichAdresatowDoPliku() : void
 + pobierzIdOstatniegoAdresata() : Integer
 + usunAdresataZPliku() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>217</x>
+      <y>490</y>
+      <w>182</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>PlikTekstowy
+--
+- NAZWA_PLIKU : String
+--
+PlikTekstowy()
++ czyPlikJestPusty() : Bool
++ pobierzNazwePliku() : String</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

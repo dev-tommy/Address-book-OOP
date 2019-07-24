@@ -38,19 +38,13 @@ void Menu::wyswietl() {
                 ksiazkaAdresowa.wyszukajAdresataPoNazwisku();
                 break;
             case '4':
-                //system("cls");
                 ksiazkaAdresowa.wypiszWszystkichAdresatow();
-                //system("pause");
                 break;
             case '5':
-                //system("cls");
                 ksiazkaAdresowa.usunAdresata();
-                //system("pause");
                 break;
             case '6':
-                //system("cls");
                 ksiazkaAdresowa.edytujAdresata();
-                //system("pause");
                 break;
             case '7':
                 ksiazkaAdresowa.zmianaHaslaZalogowanegoUzytkownika();
@@ -114,6 +108,7 @@ char Menu::wybierzOpcjeZMenuEdycja() {
     cout << "4 - Email" << endl;
     cout << "5 - Adres" << endl;
     cout << "6 - Powrot " << endl;
+    cout << "---------------------------" << endl;
     cout << endl << "Twoj wybor: ";
     wybor = MetodyPomocnicze::wczytajZnak();
 

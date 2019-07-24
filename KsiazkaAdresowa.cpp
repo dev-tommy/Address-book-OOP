@@ -20,7 +20,11 @@ void KsiazkaAdresowa::logowanieUzytkownika() {
 }
 
 void KsiazkaAdresowa::zmianaHaslaZalogowanegoUzytkownika() {
-    uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
+    if (uzytkownikMenedzer.czyZalogowany) {
+        uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
+    } else {
+        cout << "Uzytkownik nie zalogowany" << endl;
+    }
 }
 
 void KsiazkaAdresowa::wylogowanieUzytkownika() {

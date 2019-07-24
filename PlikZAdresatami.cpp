@@ -17,10 +17,10 @@ string PlikZAdresatami::zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKresk
 
 vector<Adresat> PlikZAdresatami::usunAdresataZPliku(int idAdresataDoUsuniecia, int idZalogowanegoUzytkownika) {
     fstream odczytywanyPlikTekstowy, tymczasowyPlikTekstowy;
+    vector<Adresat> adresaciPoUsunieciu;
     string wczytanaLinia = "";
     Adresat adresatTymczasowy;
     const string NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI = "AdresaciUsuwanie.tmp";
-    //int numerWczytanejLinii = 1;
 
     odczytywanyPlikTekstowy.open(NAZWA_PLIKU_Z_ADRESATAMI.c_str(), ios::in);
     tymczasowyPlikTekstowy.open(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI.c_str(), ios::out | ios::app);
@@ -28,16 +28,21 @@ vector<Adresat> PlikZAdresatami::usunAdresataZPliku(int idAdresataDoUsuniecia, i
     if ( (odczytywanyPlikTekstowy.good() == true) &&(tymczasowyPlikTekstowy.good() == true) && (idAdresataDoUsuniecia != 0) ) {
         getline(odczytywanyPlikTekstowy, wczytanaLinia);
         adresatTymczasowy = pobierzDaneAdresata(wczytanaLinia);
-        if (adresatTymczasowy.pobierzId() != idAdresataDoUsuniecia) {
+
+        if ( (adresatTymczasowy.pobierzId() != idAdresataDoUsuniecia) && (adresatTymczasowy.pobierzIdUzytkownika() == idZalogowanegoUzytkownika) ) {
             tymczasowyPlikTekstowy << wczytanaLinia;
+            adresaciPoUsunieciu.push_back(pobierzDaneAdresata(wczytanaLinia));
         }
         while (getline(odczytywanyPlikTekstowy, wczytanaLinia)) {
             adresatTymczasowy = pobierzDaneAdresata(wczytanaLinia);
-            if ((adresatTymczasowy.pobierzId() == idAdresataDoUsuniecia) && (adresatTymczasowy.pobierzIdUzytkownika() == idZalogowanegoUzytkownika)) {
-                continue;
-            } else {
-                tymczasowyPlikTekstowy << endl;
-                tymczasowyPlikTekstowy << wczytanaLinia;
+            if ( (adresatTymczasowy.pobierzIdUzytkownika() == idZalogowanegoUzytkownika) ) {
+                if (adresatTymczasowy.pobierzId() == idAdresataDoUsuniecia) {
+                    continue;
+                } else {
+                    tymczasowyPlikTekstowy << endl;
+                    tymczasowyPlikTekstowy << wczytanaLinia;
+                    adresaciPoUsunieciu.push_back(pobierzDaneAdresata(wczytanaLinia));
+                }
             }
         }
         odczytywanyPlikTekstowy.close();
@@ -45,7 +50,8 @@ vector<Adresat> PlikZAdresatami::usunAdresataZPliku(int idAdresataDoUsuniecia, i
 
         usunPlik(NAZWA_PLIKU_Z_ADRESATAMI);
         zmienNazwePliku(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
-        cout << "Usunieto adresata o ID: " << idAdresataDoUsuniecia << endl;
+        cout << endl << "Usunieto adresata o ID: " << idAdresataDoUsuniecia << endl;
+        system("pause");
 
     }
 
@@ -54,11 +60,12 @@ vector<Adresat> PlikZAdresatami::usunAdresataZPliku(int idAdresataDoUsuniecia, i
     if (tymczasowyPlikTekstowy.good())
         tymczasowyPlikTekstowy.close();
 
-    return wczytajAdresatowZPliku(idZalogowanegoUzytkownika);
+    return adresaciPoUsunieciu;
 }
 
 vector<Adresat> PlikZAdresatami::edytujAdresataWPliku(Adresat adresatTymczasowy, int idZalogowanegoUzytkownika) {
     fstream odczytywanyPlikTekstowy, tymczasowyPlikTekstowy;
+    vector<Adresat> adresaciPoEdycji;
     string wczytanaLinia = "";
     const string NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI = "AdresaciEdycja.tmp";
     int idAdresataDoEdycji = adresatTymczasowy.pobierzId();
@@ -69,7 +76,7 @@ vector<Adresat> PlikZAdresatami::edytujAdresataWPliku(Adresat adresatTymczasowy,
     if ( (odczytywanyPlikTekstowy.good() == true) &&(tymczasowyPlikTekstowy.good() == true) && (idAdresataDoEdycji != 0) ) {
         getline(odczytywanyPlikTekstowy, wczytanaLinia);
         pobranyAdresat = pobierzDaneAdresata(wczytanaLinia);
-        if (pobranyAdresat.pobierzId() != idAdresataDoEdycji) {
+        if ((pobranyAdresat.pobierzId() != idAdresataDoEdycji) && (adresatTymczasowy.pobierzIdUzytkownika() == idZalogowanegoUzytkownika)) {
             tymczasowyPlikTekstowy << wczytanaLinia;
         } else {
             tymczasowyPlikTekstowy << zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(adresatTymczasowy);
@@ -79,9 +86,11 @@ vector<Adresat> PlikZAdresatami::edytujAdresataWPliku(Adresat adresatTymczasowy,
             if ((pobranyAdresat.pobierzIdUzytkownika() == idZalogowanegoUzytkownika) &&  (pobranyAdresat.pobierzId() == idAdresataDoEdycji)) {
                 tymczasowyPlikTekstowy << endl;
                 tymczasowyPlikTekstowy << zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(adresatTymczasowy);
+                adresaciPoEdycji.push_back(adresatTymczasowy);
             } else {
                 tymczasowyPlikTekstowy << endl;
                 tymczasowyPlikTekstowy << wczytanaLinia;
+                adresaciPoEdycji.push_back(pobierzDaneAdresata(wczytanaLinia));
             }
         }
         odczytywanyPlikTekstowy.close();
@@ -89,7 +98,8 @@ vector<Adresat> PlikZAdresatami::edytujAdresataWPliku(Adresat adresatTymczasowy,
 
         usunPlik(NAZWA_PLIKU_Z_ADRESATAMI);
         zmienNazwePliku(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
-        cout << "Nadpisano adresata o ID: " << idAdresataDoEdycji << endl;
+        cout << endl << "Poprawnie zmieniono dane adresata o ID: " << idAdresataDoEdycji << endl;
+        system("pause");
 
     }
 
@@ -98,7 +108,7 @@ vector<Adresat> PlikZAdresatami::edytujAdresataWPliku(Adresat adresatTymczasowy,
     if (tymczasowyPlikTekstowy.good())
         tymczasowyPlikTekstowy.close();
 
-    return wczytajAdresatowZPliku(idZalogowanegoUzytkownika);
+    return adresaciPoEdycji;
 
 }
 
