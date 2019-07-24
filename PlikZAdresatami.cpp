@@ -28,18 +28,21 @@ vector<Adresat> PlikZAdresatami::usunAdresataZPliku(int idAdresataDoUsuniecia, i
     if ( (odczytywanyPlikTekstowy.good() == true) &&(tymczasowyPlikTekstowy.good() == true) && (idAdresataDoUsuniecia != 0) ) {
         getline(odczytywanyPlikTekstowy, wczytanaLinia);
         adresatTymczasowy = pobierzDaneAdresata(wczytanaLinia);
-        if (adresatTymczasowy.pobierzId() != idAdresataDoUsuniecia) {
+
+        if ( (adresatTymczasowy.pobierzId() != idAdresataDoUsuniecia) && (adresatTymczasowy.pobierzIdUzytkownika() == idZalogowanegoUzytkownika) ) {
             tymczasowyPlikTekstowy << wczytanaLinia;
             adresaciPoUsunieciu.push_back(pobierzDaneAdresata(wczytanaLinia));
         }
         while (getline(odczytywanyPlikTekstowy, wczytanaLinia)) {
             adresatTymczasowy = pobierzDaneAdresata(wczytanaLinia);
-            if ((adresatTymczasowy.pobierzId() == idAdresataDoUsuniecia) && (adresatTymczasowy.pobierzIdUzytkownika() == idZalogowanegoUzytkownika)) {
-                continue;
-            } else {
-                tymczasowyPlikTekstowy << endl;
-                tymczasowyPlikTekstowy << wczytanaLinia;
-                adresaciPoUsunieciu.push_back(pobierzDaneAdresata(wczytanaLinia));
+            if ( (adresatTymczasowy.pobierzIdUzytkownika() == idZalogowanegoUzytkownika) ) {
+                if (adresatTymczasowy.pobierzId() == idAdresataDoUsuniecia) {
+                    continue;
+                } else {
+                    tymczasowyPlikTekstowy << endl;
+                    tymczasowyPlikTekstowy << wczytanaLinia;
+                    adresaciPoUsunieciu.push_back(pobierzDaneAdresata(wczytanaLinia));
+                }
             }
         }
         odczytywanyPlikTekstowy.close();
@@ -72,7 +75,7 @@ vector<Adresat> PlikZAdresatami::edytujAdresataWPliku(Adresat adresatTymczasowy,
     if ( (odczytywanyPlikTekstowy.good() == true) &&(tymczasowyPlikTekstowy.good() == true) && (idAdresataDoEdycji != 0) ) {
         getline(odczytywanyPlikTekstowy, wczytanaLinia);
         pobranyAdresat = pobierzDaneAdresata(wczytanaLinia);
-        if (pobranyAdresat.pobierzId() != idAdresataDoEdycji) {
+        if ((pobranyAdresat.pobierzId() != idAdresataDoEdycji) && (adresatTymczasowy.pobierzIdUzytkownika() == idZalogowanegoUzytkownika)) {
             tymczasowyPlikTekstowy << wczytanaLinia;
         } else {
             tymczasowyPlikTekstowy << zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(adresatTymczasowy);

@@ -88,7 +88,7 @@ void AdresatMenedzer::edytujAdresata() {
                     break;
                 case '2':
                     cout << "Podaj nowe nazwisko: ";
-                   adresatTymczasowy.ustawNazwisko(MetodyPomocnicze::wczytajLinie());
+                    adresatTymczasowy.ustawNazwisko(MetodyPomocnicze::wczytajLinie());
                     //adresaci[i].nazwisko = zamienPierwszaLitereNaDuzaAPozostaleNaMale(adresaci[i].nazwisko);
                     //zaktualizujDaneWybranegoAdresata(adresaci[i], idEdytowanegoAdresata);
                     break;
@@ -162,8 +162,12 @@ Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika) 
 
 void AdresatMenedzer::wypiszWszystkichAdresatow() {
     system("cls");
-    for (int i = 0; i < adresaci.size(); i++) {
-        wyswietlDaneAdresata(adresaci[i]);
+    if ((!adresaci.empty())) {
+        for (int i = 0; i < adresaci.size(); i++) {
+            wyswietlDaneAdresata(adresaci[i]);
+        }
+    } else {
+        cout << endl << "Ksiazka adresowa jest pusta" << endl << endl;
     }
     system("pause");
 }
@@ -182,11 +186,12 @@ void AdresatMenedzer::wyszukajAdresataPoImieniu() {
 
         for (int i=0; i<adresaci.size(); i++) {
             if (adresaci[i].pobierzImie() == imiePoszukiwanegoAdresata) {
-                    wyswietlDaneAdresata(adresaci[i]);
-                    czyZnaleziono = true;
+                wyswietlDaneAdresata(adresaci[i]);
+                czyZnaleziono = true;
             }
         }
-        if (!czyZnaleziono) cout << "Nie znaleziono adresata o imieniu: " << imiePoszukiwanegoAdresata << endl;
+        if (!czyZnaleziono)
+            cout << "Nie znaleziono adresata o imieniu: " << imiePoszukiwanegoAdresata << endl;
 
     } else {
         cout << endl << "Ksiazka adresowa jest pusta" << endl << endl;
@@ -209,11 +214,12 @@ void AdresatMenedzer::wyszukajAdresataPoNazwisku() {
 
         for (int i=0; i<adresaci.size(); i++) {
             if (adresaci[i].pobierzNazwisko() == nazwiskoPoszukiwanegoAdresata) {
-                    wyswietlDaneAdresata(adresaci[i]);
-                    czyZnaleziono = true;
+                wyswietlDaneAdresata(adresaci[i]);
+                czyZnaleziono = true;
             }
         }
-        if (!czyZnaleziono) cout << "Nie znaleziono adresata o nazwisku: " << nazwiskoPoszukiwanegoAdresata << endl;
+        if (!czyZnaleziono)
+            cout << "Nie znaleziono adresata o nazwisku: " << nazwiskoPoszukiwanegoAdresata << endl;
     } else {
         cout << endl << "Ksiazka adresowa jest pusta." << endl << endl;
     }
