@@ -8,6 +8,8 @@ UzytkownikMenedzer::UzytkownikMenedzer(string nazwaPlikuZUzytkownikami) : plikZU
 
 void UzytkownikMenedzer::rejestracjaUzytkownika() {
 
+    system("cls");
+    cout << ">>> REJESTRACJA UZYTKOWNIKA <<<" << endl << endl;
     Uzytkownik uzytkownik = podajDaneNowegoUzytkownika();
 
     uzytkownicy.push_back(uzytkownik);
@@ -29,6 +31,7 @@ void UzytkownikMenedzer::wypiszWszystkichUzytkownikow() {
 Uzytkownik UzytkownikMenedzer::podajDaneNowegoUzytkownika() {
     Uzytkownik uzytkownik;
     string login, haslo;
+
     uzytkownik.ustawId(pobierzIdNowegoUzytkownika());
     do {
         cout << "Podaj login: ";
@@ -64,6 +67,9 @@ void UzytkownikMenedzer::logowanieUzytkownika() {
     string login, haslo;
     idZalogowanegoUzytkownika = 0;
     czyZalogowany = false;
+
+    system("cls");
+    cout << ">>> LOGOWANIE UZYTKOWNIKA <<<" << endl << endl;
     cout << "Podaj login: ";
     cin >> login;
 
@@ -92,6 +98,9 @@ void UzytkownikMenedzer::logowanieUzytkownika() {
 
 void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
     string noweHaslo = "";
+
+    system("cls");
+    cout << ">>> ZMIANA HASLA UZYTKOWNIKA <<<" << endl << endl;
     if (czyZalogowany) {
         cout << "Podaj nowe haslo: ";
         cin >> noweHaslo;
@@ -99,7 +108,7 @@ void UzytkownikMenedzer::zmianaHaslaZalogowanegoUzytkownika() {
         for (int i = 0; i < uzytkownicy.size(); i++) {
             if (uzytkownicy[i].pobierzId() == idZalogowanegoUzytkownika) {
                 uzytkownicy[i].ustawHaslo(noweHaslo);
-                cout << "Haslo zostalo zmienione." << endl << endl;
+                cout << endl << "Haslo zostalo zmienione." << endl << endl;
                 system("pause");
             }
         }

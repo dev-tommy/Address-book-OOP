@@ -50,7 +50,8 @@ vector<Adresat> PlikZAdresatami::usunAdresataZPliku(int idAdresataDoUsuniecia, i
 
         usunPlik(NAZWA_PLIKU_Z_ADRESATAMI);
         zmienNazwePliku(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
-        cout << "Usunieto adresata o ID: " << idAdresataDoUsuniecia << endl;
+        cout << endl << "Usunieto adresata o ID: " << idAdresataDoUsuniecia << endl;
+        system("pause");
 
     }
 
@@ -97,7 +98,8 @@ vector<Adresat> PlikZAdresatami::edytujAdresataWPliku(Adresat adresatTymczasowy,
 
         usunPlik(NAZWA_PLIKU_Z_ADRESATAMI);
         zmienNazwePliku(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
-        cout << "Nadpisano adresata o ID: " << idAdresataDoEdycji << endl;
+        cout << endl << "Poprawnie zmieniono dane adresata o ID: " << idAdresataDoEdycji << endl;
+        system("pause");
 
     }
 

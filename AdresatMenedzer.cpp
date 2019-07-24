@@ -79,6 +79,9 @@ void AdresatMenedzer::edytujAdresata() {
 
                 wybor = MetodyPomocnicze::wczytajZnak();
 
+                system("cls");
+                cout << ">>> WYSZUKIWANIE ADRESATOW O IMIENIU <<<" << endl << endl;
+
                 switch (wybor) {
                 case '1':
                     cout << "Podaj nowe imie: ";
@@ -137,6 +140,9 @@ Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika) 
     adresat.ustawId(plikZAdresatami.pobierzIdOstatniegoAdresata()+1);
     adresat.ustawIdUzytkownika(idZalogowanegoUzytkownika);
 
+    system("cls");
+    cout << ">>> DODAWANIE NOWEGO ADRESATA <<<" << endl << endl;
+    cin.clear();
     cin.sync();
     cout << "Podaj imie: ";
     getline(cin, imie);
@@ -162,6 +168,7 @@ Adresat AdresatMenedzer::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika) 
 
 void AdresatMenedzer::wypiszWszystkichAdresatow() {
     system("cls");
+    cout << ">>> WYSWIETLANIE WSZYSTKICH ADRESATOW <<<" << endl << endl;
     if ((!adresaci.empty())) {
         for (int i = 0; i < adresaci.size(); i++) {
             wyswietlDaneAdresata(adresaci[i]);
