@@ -37,6 +37,7 @@ vector<Adresat> PlikZAdresatami::usunAdresataZPliku(int idAdresataDoUsuniecia, i
                     tymczasowyPlikTekstowy << endl;
                 }
                 tymczasowyPlikTekstowy << wczytanaLinia;
+                idOstatniegoAdresata = pobierzDaneAdresata(wczytanaLinia).pobierzId();
                 if (adresatTymczasowy.pobierzIdUzytkownika() == idZalogowanegoUzytkownika) {
                     adresaciPoUsunieciu.push_back(pobierzDaneAdresata(wczytanaLinia));
                 }
@@ -118,46 +119,6 @@ vector<Adresat> PlikZAdresatami::edytujAdresataWPliku(Adresat adresatTymczasowy,
         odczytywanyPlikTekstowy.close();
     if (tymczasowyPlikTekstowy.good())
         tymczasowyPlikTekstowy.close();
-
-
-
-    /*
-
-
-    if ( (odczytywanyPlikTekstowy.good() == true) &&(tymczasowyPlikTekstowy.good() == true) && (idAdresataDoEdycji != 0) ) {
-        getline(odczytywanyPlikTekstowy, wczytanaLinia);
-        pobranyAdresat = pobierzDaneAdresata(wczytanaLinia);
-        if ((pobranyAdresat.pobierzId() != idAdresataDoEdycji) && (adresatTymczasowy.pobierzIdUzytkownika() == idZalogowanegoUzytkownika)) {
-            tymczasowyPlikTekstowy << wczytanaLinia;
-        } else {
-            tymczasowyPlikTekstowy << zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(adresatTymczasowy);
-        }
-        while (getline(odczytywanyPlikTekstowy, wczytanaLinia)) {
-            pobranyAdresat = pobierzDaneAdresata(wczytanaLinia);
-            if ((pobranyAdresat.pobierzIdUzytkownika() == idZalogowanegoUzytkownika) &&  (pobranyAdresat.pobierzId() == idAdresataDoEdycji)) {
-                tymczasowyPlikTekstowy << endl;
-                tymczasowyPlikTekstowy << zamienDaneAdresataNaLinieZDanymiOddzielonaPionowymiKreskami(adresatTymczasowy);
-                adresaciPoEdycji.push_back(adresatTymczasowy);
-            } else {
-                tymczasowyPlikTekstowy << endl;
-                tymczasowyPlikTekstowy << wczytanaLinia;
-                adresaciPoEdycji.push_back(pobierzDaneAdresata(wczytanaLinia));
-            }
-        }
-        odczytywanyPlikTekstowy.close();
-        tymczasowyPlikTekstowy.close();
-
-        usunPlik(NAZWA_PLIKU_Z_ADRESATAMI);
-        zmienNazwePliku(NAZWA_TYMCZASOWEGO_PLIKU_Z_ADRESATAMI, NAZWA_PLIKU_Z_ADRESATAMI);
-        cout << endl << "Poprawnie zmieniono dane adresata o ID: " << idAdresataDoEdycji << endl;
-        system("pause");
-
-    }
-
-    if (odczytywanyPlikTekstowy.good())
-        odczytywanyPlikTekstowy.close();
-    if (tymczasowyPlikTekstowy.good())
-        tymczasowyPlikTekstowy.close(); */
 
     return adresaciPoEdycji;
 
