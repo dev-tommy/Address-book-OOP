@@ -8,7 +8,6 @@
 #include <cstdlib>
 
 #include "MetodyPomocnicze.h"
-#include "Adresat.h"
 
 using namespace std;
 
